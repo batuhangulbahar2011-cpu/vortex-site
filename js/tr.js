@@ -72,7 +72,7 @@ window.VORTEX_TR = {
   "f3.p": "Codex oturumları ve Codex onayları aynı adada görünür. İki ajan aynı anda çalışabilir; her kart hangisi olduğunu gösterir.",
   "f3.m": "Claude Code · Codex CLI · Codex uygulaması",
   "f4.t": "Kullanım limitleri",
-  "f4.p": "Claude'un 5 saatlik ve haftalık pencereleri ile Codex pencerelerin: ne kadar kullanıldığı ve her birinin ne zaman yenileneceği. %60, %80 ve %90 uyarıları (eşikleri değiştirebilirsin), kullanım hızı tahmini ve 7 günlük grafik.",
+  "f4.p": "Claude'un 5 saatlik ve haftalık pencereleri ile Codex pencereleri: ne kadar kullanıldığı ve her birinin ne zaman yenileneceği. %60, %80 ve %90 uyarıları (eşikleri değiştirebilirsin), kullanım hızı tahmini ve 7 günlük grafik.",
   "f4.m": "Claude: Pro ya da Max planı, Claude Code oturumu açıkken güncellenir · Codex: ChatGPT ile giriş",
   "f5.t": "Odak modu",
   "f5.p": "Tek anahtar; bildirimleri, ajan seslerini ve ada yanıp sönmelerini susturur. Yalnız izin istekleri ve son limit uyarısı geçer; her şey listelerde seni bekler.",
