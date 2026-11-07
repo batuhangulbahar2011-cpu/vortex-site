@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://batuhangulbahar2011-cpu.github.io/vortex-site/sitemap.xml

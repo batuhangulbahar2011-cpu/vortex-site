@@ -1,0 +1,8 @@
+# Working files: drafts, screenshots, release copy (~116 MB installer). Never publish.
+_calisma/
+
+# OS / editor clutter
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.tmp
