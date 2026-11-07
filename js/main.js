@@ -30,7 +30,21 @@
     var dict = lang === 'tr' ? TR : EN;
     return Object.prototype.hasOwnProperty.call(dict, key) ? dict[key] : EN[key];
   }
-  function locSrc(src) { return src.replace(/-(en|tr)\.webp$/, '-' + lang + '.webp'); }
+  function locSrc(src) { return src.replace(/-(en|tr)\.(webp|jpg|mp4)$/, '-' + lang + '.$2'); }
+
+  // The promo video has an English and a Turkish cut (captions in that language).
+  var video = document.getElementById('promo');
+  function locVideo() {
+    if (!video) return;
+    var source = video.querySelector('source');
+    var next = locSrc(source.getAttribute('src'));
+    if (next === source.getAttribute('src')) return;
+    if (!video.paused) return; // never swap under someone who is watching
+    video.setAttribute('poster', locSrc(video.getAttribute('poster')));
+    source.setAttribute('src', next);
+    each('a', function (a) { a.setAttribute('href', locSrc(a.getAttribute('href'))); }, video);
+    video.load();
+  }
 
   function applyLang(next, save) {
     lang = next === 'tr' ? 'tr' : 'en';
@@ -41,6 +55,8 @@
     each('[data-i18n-aria]', function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
     each('[data-i18n-content]', function (el) { el.setAttribute('content', t(el.getAttribute('data-i18n-content'))); });
     each('img.loc', function (img) { img.src = locSrc(img.getAttribute('src')); });
+    each('a.loc-href', function (a) { a.setAttribute('href', locSrc(a.getAttribute('href'))); });
+    locVideo();
     each('.lang button', function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
     if (current) showFeature(current, true, true);
     if (save) {
@@ -134,6 +150,24 @@
   var capTitle = stage && stage.querySelector('.stage-title');
   var current = null;
   var front = 0;
+  var wide = window.matchMedia ? window.matchMedia('(min-width: 1000px)') : { matches: false };
+
+  // On wide screens each feature title is a toggle button for the stage. Below 1000 px the stage is
+  // hidden and every card shows its own picture, so the titles stay plain headings.
+  function setFeatButtons() {
+    feats.forEach(function (li) {
+      var b = li.querySelector('.feat-btn');
+      if (!b) return;
+      if (wide.matches && stage) {
+        b.setAttribute('role', 'button');
+        b.setAttribute('tabindex', '0');
+        b.setAttribute('aria-controls', 'stage');
+        b.setAttribute('aria-pressed', String(li === current));
+      } else {
+        ['role', 'tabindex', 'aria-controls', 'aria-pressed'].forEach(function (a) { b.removeAttribute(a); });
+      }
+    });
+  }
 
   function showFeature(li, force, instant) {
     if (!stage || !li || (li === current && !force)) return;
@@ -146,7 +180,7 @@
       var on = f === li;
       f.classList.toggle('is-active', on);
       var b = f.querySelector('.feat-btn');
-      if (b) b.setAttribute('aria-pressed', String(on));
+      if (b && wide.matches) b.setAttribute('aria-pressed', String(on));
     });
     stage.setAttribute('data-tint', li.getAttribute('data-tint') || 'lav');
     if (capNum) capNum.textContent = (li.querySelector('.num') || {}).textContent || '';
@@ -171,12 +205,18 @@
     nxt.src = src;
   }
 
-  var wide = window.matchMedia ? window.matchMedia('(min-width: 1000px)') : { matches: false };
   var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   feats.forEach(function (li) {
     var btn = li.querySelector('.feat-btn');
     li.addEventListener('click', function () { showFeature(li); });
-    if (btn) btn.addEventListener('focus', function () { showFeature(li); });
+    if (btn) {
+      btn.addEventListener('focus', function () { if (wide.matches) showFeature(li); });
+      btn.addEventListener('keydown', function (e) {
+        if (!wide.matches || (e.key !== 'Enter' && e.key !== ' ')) return;
+        e.preventDefault();
+        showFeature(li);
+      });
+    }
     if (canHover) {
       var hoverTimer;
       li.addEventListener('mouseenter', function () {
@@ -187,6 +227,9 @@
     }
   });
   if (feats.length) { current = feats[0]; feats[0].classList.add('is-active'); }
+  setFeatButtons();
+  if (wide.addEventListener) wide.addEventListener('change', setFeatButtons);
+  else if (wide.addListener) wide.addListener(setFeatButtons);
 
   // Scrolling: the card crossing the middle of the screen becomes the active one.
   if (stage && 'IntersectionObserver' in window) {
@@ -207,7 +250,20 @@
   });
 
   /* =================================================================
-     4. Start: ?lang=tr|en in the URL wins, then the saved choice, then English.
+     4. Small-screen menu (a <details> that also works without JS): close it after a
+        link is picked, on Escape and on a click outside.
+     ================================================================= */
+  var menu = document.querySelector('.menu');
+  if (menu) {
+    each('a', function (a) { a.addEventListener('click', function () { menu.open = false; }); }, menu);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+    });
+    document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  }
+
+  /* =================================================================
+     5. Start: ?lang=tr|en in the URL wins, then the saved choice, then English.
      ================================================================= */
   var saved = null;
   try { saved = localStorage.getItem(STORE_KEY); } catch (e) {}

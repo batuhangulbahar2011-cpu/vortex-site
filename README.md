@@ -21,7 +21,7 @@ js/tr.js            TÜRKÇE metinler (anahtar → metin listesi)
 js/main.js          Dil değiştirme, üstteki ada/terminal animasyonu, özellik görseli değiştirme
 assets/             Simgeler, og.png (paylaşım görseli), shots/ (ekran görüntüleri), video/
 site.webmanifest    Uygulama simgeleri bilgisi
-robots.txt          Arama motorlarına izin + site haritası adresi
+robots.txt          Arama motorlarına izin + site haritası adresi (github.io üzerinde etkisiz, aşağıya bak)
 sitemap.xml         Site haritası
 .nojekyll           GitHub Pages'in dosyaları Jekyll'den geçirmemesi için (boş dosya)
 .gitignore          _calisma/ klasörünü depodan dışarıda tutar
@@ -71,22 +71,32 @@ Sonra tarayıcıda http://localhost:8080/ adresini aç.
 - Ekran görüntüleri `assets/shots/` içinde, her biri iki dilde: `ad-en.webp` ve `ad-tr.webp`.
   Dil değişince site `-en`/`-tr` ekini otomatik değiştirir; yeni görsel eklerken iki dosyayı da koy.
   Görseller şeffaf arka planlıdır (adanın gölgesi dahil); aynı biçimde kırpılmaları iyi olur.
+- Özellik kartlarındaki görseller CSS ile adaya kırpılır (1138×502 kaynağın 76–1062 px arası).
+  Telefonda (559 px altı) her kart adanın ilgili kısmına yakınlaşır: `css/style.css` içinde
+  `.feat-shot` için `--fx` (sol kenar) ve `--fw` (görünen genişlik), kaynak piksel cinsinden.
+  Görsele dokununca tam boyutlu dosya yeni sekmede açılır.
 - Paylaşım görseli `assets/og.png` (1200×630). Yeniden üretmek için: `py -3 _calisma/make_og.py`.
 - Simgeler: `assets/favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`.
 
 ## Tanıtım videosunu değiştirme
 
-Şu anki video (`assets/video/vortex-demo.mp4`) 3 Kasım tasarım güncellemesinden kalma; Codex ve
-Limitler sekmesini göstermez ve sitede bu açıkça yazar. Yeni video hazır olunca:
+Videonun iki kurgusu var, ikisi de Vortex deposundaki `219dbcb` (v0.4/v0.5 sahneleri) kaydından:
 
-1. Yeni dosyayı **aynı adla** `assets/video/vortex-demo.mp4` olarak koy (ya da adı değiştirirsen
-   `index.html`'deki iki `vortex-demo.mp4` geçen yeri de değiştir).
+- `assets/video/vortex-demo-en.mp4` + `poster-en.jpg` (İngilizce altyazı)
+- `assets/video/vortex-demo-tr.mp4` + `poster-tr.jpg` (Türkçe altyazı)
+
+Her biri yaklaşık 73 saniye (oynatıcıda 1:12), 1920×1080, H.264 + AAC (özgün fon müziği), `+faststart`, yaklaşık 5,7 MB.
+Sayfa dil değişince videoyu ve kapağı da `-en` / `-tr` olarak değiştirir (`js/main.js`, `locVideo`);
+video o anda oynuyorsa değiştirmez. `index.html` İngilizce dosyaları gösterir (JS kapalıyken de).
+
+Yeni video hazır olunca:
+
+1. Dosyaları **aynı adlarla** `assets/video/` içine koy (iki dil için iki MP4, iki kapak).
    - Biçim: H.264 + AAC, `+faststart`. Boyutu küçük tut (20 MB altı iyi; GitHub dosya başına
-     100 MB'ı kabul etmez). Örnek: `ffmpeg -i yeni.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 96k -movflags +faststart vortex-demo.mp4`
-2. Kapak görselini `assets/video/poster.jpg` olarak güncelle (örnek: `ffmpeg -ss 3 -i vortex-demo.mp4 -frames:v 1 -vf scale=1280:-2 poster.jpg`).
+     100 MB'ı kabul etmez). Örnek: `ffmpeg -i yeni.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 96k -movflags +faststart vortex-demo-en.mp4`
+2. Kapak: `ffmpeg -ss 1 -i vortex-demo-en.mp4 -frames:v 1 poster-en.jpg` (Türkçe için aynısı).
 3. Video açıklamasını güncelle: `index.html`'de `data-i18n="video.lede"` ve `js/tr.js`'de
-   `"video.lede"`. "Codex ve Limitler sekmesi o sırada yoktu" cümlesini artık doğru değilse kaldır;
-   altyazı dili değiştiyse onu da düzelt. Süre değiştiyse "two-minute / iki dakikalık" ifadesini düzelt.
+   `"video.lede"` (süre, gösterilen özellikler, altyazı dili).
 
 ## Yeni sürüm çıkınca (ör. 0.6.0)
 
@@ -184,11 +194,39 @@ Aşağıdaki **tam adresler** yeni alan adıyla değiştirilmeli (göreli yollar
 - `index.html`: `<link rel="canonical">`, `og:url`, `og:image`, `twitter:image`
 - `robots.txt`: `Sitemap:` satırı
 - `sitemap.xml`: `<loc>`
+- `index.html`: üç `<link rel="alternate" hreflang=...>` satırı (`en`, `tr` = `?lang=tr`, `x-default`)
+- `404.html`: "Go to the home page" bağlantısının `href` değeri (JS kapalıyken kullanılan tam adres).
+  JS açıkken düğme GitHub Pages'te `/vortex-site/`, kendi alan adında `/` adresine gider.
 
-Bulmak için: `grep -rn "github.io/vortex-site" index.html robots.txt sitemap.xml`
+Bulmak için: `grep -rn "github.io/vortex-site" index.html 404.html robots.txt sitemap.xml`
 
-`404.html` ana sayfa düğmesi GitHub Pages'te `/vortex-site/`, diğer her yerde `/` adresine gider;
-değiştirmen gerekmez.
+### robots.txt ve site haritası hakkında
+
+GitHub Pages proje sitesinde `robots.txt` `/vortex-site/robots.txt` adresinde durur. Arama motorları
+yalnız alan adının kökündeki `/robots.txt`'yi okur, bu yüzden github.io üzerindeyken bu dosya (ve
+içindeki `Sitemap:` satırı) **işe yaramaz**. O süre boyunca `sitemap.xml`'i elle bildir: Google Search
+Console ve Bing Webmaster Tools'a `https://batuhangulbahar2011-cpu.github.io/vortex-site/sitemap.xml`
+adresini ekle. Site kendi alan adının köküne taşınınca dosya kendiliğinden çalışmaya başlar.
+
+## Yayından önce son kontrol
+
+Depo public olarak gönderilip `v0.5.0` sürümü yayımlanmadan sitedeki dış bağlantıların hepsi 404
+verir (indirme düğmeleri ve altbilgideki GitHub deposu bağlantısı). Pages'i açtıktan sonra:
+
+```
+curl -sI https://github.com/batuhangulbahar2011-cpu/vortex-site | head -1
+curl -sIL https://github.com/batuhangulbahar2011-cpu/vortex-site/releases/download/v0.5.0/Vortex-Setup-0.5.0.exe | grep -i "^HTTP\|content-length"
+```
+
+İlki `200`, ikincisi bir `302` ardından `200` ve 121565657 baytlık bir dosya göstermeli. Sitedeki
+SHA-256 değeri (`8223aaff…d987d1`) `_calisma/release/Vortex-Setup-0.5.0.exe` ile eşleşir.
+
+## Bilinen küçük maliyet
+
+Türkçe ziyaretçide (`?lang=tr` ya da kayıtlı seçim) sayfanın üstündeki üç ada görseli önce `-en`
+olarak indirilir (HTML'deki varsayılan), sonra JS `-tr` sürümlerini yükler: yaklaşık 100 KB fazladan
+indirme. Bilerek kabul edildi; JS kapalıyken de görsel çıksın diye `src` HTML'de duruyor. Aşağıdaki
+özellik görselleri `loading="lazy"` olduğu için bu sorunu yaşamaz.
 
 ## Doğruluk kuralları
 

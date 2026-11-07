@@ -6,6 +6,9 @@
 <title data-i18n="meta.title">Vortex — Dynamic island for Windows</title>
 <meta name="description" data-i18n-content="meta.desc" content="Vortex sits at the top of your screen and shows what Claude Code and Codex are doing. Allow or deny permission requests from the island and keep an eye on your usage limits. Free demo for Windows 10 &amp; 11.">
 <link rel="canonical" href="https://batuhangulbahar2011-cpu.github.io/vortex-site/">
+<link rel="alternate" hreflang="en" href="https://batuhangulbahar2011-cpu.github.io/vortex-site/">
+<link rel="alternate" hreflang="tr" href="https://batuhangulbahar2011-cpu.github.io/vortex-site/?lang=tr">
+<link rel="alternate" hreflang="x-default" href="https://batuhangulbahar2011-cpu.github.io/vortex-site/">
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
 
@@ -67,6 +70,19 @@
       </ul>
     </nav>
     <div class="nav-actions">
+      <details class="menu">
+        <summary>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="m-open" d="M4 7h16M4 12h16M4 17h16"/><path class="m-close" d="M6 6l12 12M18 6L6 18"/></svg>
+          <span class="sr-only" data-i18n="nav.menu">Menu</span>
+        </summary>
+        <ul class="menu-panel">
+          <li><a href="#features" data-i18n="nav.features">Features</a></li>
+          <li><a href="#how" data-i18n="nav.how">How it works</a></li>
+          <li><a href="#privacy" data-i18n="nav.privacy">Privacy</a></li>
+          <li><a href="#changelog" data-i18n="nav.changelog">Changelog</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        </ul>
+      </details>
       <div class="lang" role="group" aria-label="Language" data-i18n-aria="nav.lang">
         <button type="button" data-lang="en" aria-pressed="true" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></button>
         <button type="button" data-lang="tr" aria-pressed="false" lang="tr"><span class="sr-only">Türkçe</span><span aria-hidden="true">TR</span></button>
@@ -95,7 +111,7 @@
         <a class="btn btn-soft btn-lg" href="#how" data-i18n="cta.how">How to install</a>
       </div>
       <p class="note" data-i18n="cta.note">Windows 10 &amp; 11 · free demo · v0.5.0 · 116 MB</p>
-      <ul class="chips" aria-label="At a glance" data-i18n-aria="chips.aria">
+      <ul class="chips" role="list" aria-label="At a glance" data-i18n-aria="chips.aria">
         <li data-i18n="chips.1">No account</li>
         <li data-i18n="chips.2">No telemetry</li>
         <li data-i18n="chips.3">No admin rights</li>
@@ -118,11 +134,13 @@
             <div class="term-bar">
               <span class="term-dots"><i></i><i></i><i></i></span>
               <span class="term-title">~/vortex-demo</span>
+              <span class="term-tag" data-i18n="term.tag">Illustration</span>
             </div>
             <ol class="term-body">
               <li data-line="0"><span class="t-p">$</span> claude "<span data-i18n="term.l1">Add a dark mode toggle to settings</span>"</li>
               <li data-line="0"><span class="t-dim">›</span> <span data-i18n="term.l2">Reading settings.js</span></li>
               <li data-line="0"><span class="t-dim">›</span> <span data-i18n="term.l3">Editing settings.js</span></li>
+              <li data-line="0" class="t-think"><span class="t-dim">›</span> <span data-i18n="term.think">Thinking…</span></li>
               <li data-line="1"><span class="t-warn">?</span> <span data-i18n="term.l4">Run git push origin main?</span> <span class="t-dim" data-i18n="term.l4b">waiting for you</span></li>
               <li data-line="2"><span class="t-ok">✓</span> <span data-i18n="term.l5">Allowed on the island</span></li>
               <li data-line="2"><span class="t-ok">✓</span> <span data-i18n="term.l6">Done · 2 tools · 1 min</span></li>
@@ -146,22 +164,22 @@
       </figure>
 
       <div class="states">
-        <p class="states-label" data-i18n="states.label">When the island is closed</p>
+        <h2 class="states-label" data-i18n="states.label">When the island is closed</h2>
         <p class="states-hint" data-i18n-html="states.hint">Double-click it or press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd> to open it. Hovering never does.</p>
         <ul>
           <li class="state">
             <div class="mini"><img class="loc" src="assets/shots/done-en.webp" width="470" height="121" loading="lazy" data-i18n-alt="alt.done" alt="Closed island saying Done for the vortex-demo session"></div>
-            <h2 class="state-t" data-i18n="states.done.t">Work finished</h2>
+            <h3 class="state-t" data-i18n="states.done.t">Work finished</h3>
             <p data-i18n="states.done.p">A short sound and a green dot.</p>
           </li>
           <li class="state">
             <div class="mini"><img class="loc" src="assets/shots/limit-alert-en.webp" width="662" height="120" loading="lazy" data-i18n-alt="alt.limitalert" alt="Island warning that the Claude 5-hour limit has reached 80%"></div>
-            <h2 class="state-t" data-i18n="states.limit.t">A gentle limit warning</h2>
-            <p data-i18n="states.limit.p">At 60, 80 and 90% it shows a quiet note. It never pops open by itself.</p>
+            <h3 class="state-t" data-i18n="states.limit.t">A gentle limit warning</h3>
+            <p data-i18n="states.limit.p">At 60, 80 and 90% it plays a sound and shows a short note. It never pops open by itself.</p>
           </li>
           <li class="state">
             <div class="mini"><img class="loc" src="assets/shots/pill-clock-en.webp" width="404" height="120" loading="lazy" data-i18n-alt="alt.clock" alt="Closed Vortex island showing the time and date"></div>
-            <h2 class="state-t" data-i18n="states.idle.t">Nothing going on</h2>
+            <h3 class="state-t" data-i18n="states.idle.t">Nothing going on</h3>
             <p data-i18n="states.idle.p">Just the clock and the date format you pick.</p>
           </li>
         </ul>
@@ -186,78 +204,78 @@
           <li class="feat" data-shot="agents" data-tint="lav">
             <span class="num" aria-hidden="true">01</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="true" aria-controls="stage" data-i18n="f1.t">Live agent status</button></h3>
+              <h3><span class="feat-btn" data-i18n="f1.t">Live agent status</span></h3>
               <p data-i18n="f1.p">Every open Claude Code and Codex session as a card: the prompt, the current step, tool count and duration. The closed island shows what's happening right now with a coloured status dot.</p>
               <p class="meta" data-i18n="f1.m">working · needs your OK · done · error</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/agents-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.agents" alt="Two Claude Code sessions side by side, each showing its task and the file it is editing or searching">
+            <a class="feat-shot loc-href" href="assets/shots/agents-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/agents-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.agents" alt="Two Claude Code sessions side by side, each showing its task and the file it is editing or searching"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
           <li class="feat" data-shot="permission" data-tint="peach">
             <span class="num" aria-hidden="true">02</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="false" aria-controls="stage" data-i18n="f2.t">Allow or deny from the island</button></h3>
+              <h3><span class="feat-btn" data-i18n="f2.t">Allow or deny from the island</span></h3>
               <p data-i18n-html="f2.p">Permission requests show the exact command and a countdown. Click Allow or Deny, or press <kbd>Y</kbd> or <kbd>N</kbd> while the island has focus. No answer? Claude Code's own terminal prompt takes over.</p>
               <p class="meta" data-i18n="f2.m">Y allow · N deny · terminal after 120 s</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/permission-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.permission" alt="Claude Code asks to run git push origin main, with Deny and Allow buttons right on the island">
+            <a class="feat-shot loc-href" href="assets/shots/permission-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/permission-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.permission" alt="Claude Code asks to run git push origin main, with Deny and Allow buttons right on the island"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
           <li class="feat" data-shot="codex" data-tint="mint">
             <span class="num" aria-hidden="true">03</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="false" aria-controls="stage" data-i18n="f3.t">Codex, too</button></h3>
+              <h3><span class="feat-btn" data-i18n="f3.t">Codex, too</span></h3>
               <p data-i18n="f3.p">Codex sessions and Codex approvals show up on the same island. Both agents can run at the same time; each card shows which one it is.</p>
               <p class="meta" data-i18n="f3.m">Claude Code · Codex CLI · Codex app</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/codex-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.codex" alt="A Codex session asks to run a deploy command, with Deny and Allow buttons">
+            <a class="feat-shot loc-href" href="assets/shots/codex-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/codex-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.codex" alt="A Codex session asks to run a deploy command, with Deny and Allow buttons"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
           <li class="feat" data-shot="limits" data-tint="sky">
             <span class="num" aria-hidden="true">04</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="false" aria-controls="stage" data-i18n="f4.t">Usage limits</button></h3>
-              <p data-i18n="f4.p">Claude's 5-hour and weekly windows and your Codex windows: how much is used and when each one renews. Alerts at 60, 80 and 90%, a pace estimate and a 7-day chart.</p>
-              <p class="meta" data-i18n="f4.m">60 / 80 / 90% · thresholds you can change</p>
+              <h3><span class="feat-btn" data-i18n="f4.t">Usage limits</span></h3>
+              <p data-i18n="f4.p">Claude's 5‑hour and weekly windows and your Codex windows: how much is used and when each one renews. Alerts at 60, 80 and 90% (you can change the thresholds), a pace estimate and a 7‑day chart.</p>
+              <p class="meta" data-i18n="f4.m">Claude: Pro or Max plan, updates while a Claude Code session is open · Codex: signed in with ChatGPT</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/limits-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.limits" alt="Usage limits for Claude and Codex with percentages and when each limit renews">
+            <a class="feat-shot loc-href" href="assets/shots/limits-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/limits-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.limits" alt="Usage limits for Claude and Codex with percentages and when each limit renews"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
           <li class="feat" data-shot="focus" data-tint="lilac">
             <span class="num" aria-hidden="true">05</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="false" aria-controls="stage" data-i18n="f5.t">Focus mode</button></h3>
+              <h3><span class="feat-btn" data-i18n="f5.t">Focus mode</span></h3>
               <p data-i18n="f5.p">One switch silences notification pop-ups, agent sounds and island flashes. Only permission requests and the last limit warning get through, and everything still waits in the lists.</p>
               <p class="meta" data-i18n="f5.m">Turn it on from the tray, Settings or Home</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/focus-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.focus" alt="Vortex with focus mode turned on and notifications kept quiet">
+            <a class="feat-shot loc-href" href="assets/shots/focus-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/focus-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.focus" alt="Vortex with focus mode turned on and notifications kept quiet"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
           <li class="feat" data-shot="music" data-tint="rose">
             <span class="num" aria-hidden="true">06</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="false" aria-controls="stage" data-i18n="f6.t">Music</button></h3>
+              <h3><span class="feat-btn" data-i18n="f6.t">Music</span></h3>
               <p data-i18n="f6.p">Control whatever Windows is playing: play, pause, skip, seek, album art. Search and play songs with Spotify or the YouTube Music desktop app.</p>
-              <p class="meta" data-i18n="f6.m">Playback controls need no account. Search needs Spotify Premium with your own Client ID, or the YouTube Music desktop app.</p>
+              <p class="meta" data-i18n="f6.m">Playback controls need no account. Search needs Spotify Premium with your own Client ID and Spotify open on this PC, or the free YouTube Music desktop app “Pear” with its API Server plugin on.</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/music-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.music" alt="Music player on the island with track info, progress bar and playback controls">
+            <a class="feat-shot loc-href" href="assets/shots/music-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/music-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.music" alt="Music player on the island with track info, progress bar and playback controls"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
           <li class="feat" data-shot="notifications" data-tint="teal">
             <span class="num" aria-hidden="true">07</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="false" aria-controls="stage" data-i18n="f7.t">PC notifications</button></h3>
+              <h3><span class="feat-btn" data-i18n="f7.t">PC notifications</span></h3>
               <p data-i18n="f7.p">WhatsApp, Discord, Mail: anything that posts Windows notifications peeks out of the island and collects in a list. Mute apps or hide message content.</p>
-              <p class="meta" data-i18n="f7.m">Kept in memory only · never saved to disk</p>
+              <p class="meta" data-i18n="f7.m">Needs Windows notification access · kept in memory only, never saved to disk</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/notifications-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.notifications" alt="Notification center listing WhatsApp, Discord and Mail notifications">
+            <a class="feat-shot loc-href" href="assets/shots/notifications-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/notifications-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.notifications" alt="Notification center listing WhatsApp, Discord and Mail notifications"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
           <li class="feat" data-shot="drawer" data-tint="butter">
             <span class="num" aria-hidden="true">08</span>
             <div class="feat-body">
-              <h3><button type="button" class="feat-btn" aria-pressed="false" aria-controls="stage" data-i18n="f8.t">File drawer</button></h3>
+              <h3><span class="feat-btn" data-i18n="f8.t">File drawer</span></h3>
               <p data-i18n="f8.p">Drop files on the drawer to park them, drag them back out wherever you need them, click to open. Vortex keeps only a reference, never a copy.</p>
-              <p class="meta" data-i18n="f8.m">Getting files from your phone isn't available yet.</p>
+              <p class="meta" data-i18n="f8.m">The Phone button is a preview: getting files from your phone is coming later.</p>
             </div>
-            <img class="feat-img loc" src="assets/shots/drawer-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.drawer" alt="File drawer holding a PDF, an image and a folder, ready to drag out">
+            <a class="feat-shot loc-href" href="assets/shots/drawer-en.webp" target="_blank" rel="noopener"><img class="feat-img loc" src="assets/shots/drawer-en.webp" width="1138" height="502" loading="lazy" data-i18n-alt="alt.drawer" alt="File drawer holding a PDF, an image and a folder, ready to drag out"><span class="sr-only" data-i18n="feat.open">(opens the full-size picture)</span></a>
           </li>
         </ol>
 
-        <figure class="stage" id="stage" aria-live="polite">
+        <figure class="stage" id="stage">
           <div class="stage-screen">
             <img class="stage-img is-on" src="assets/shots/agents-en.webp" width="1138" height="502" data-i18n-alt="alt.agents" alt="Two Claude Code sessions side by side, each showing its task and the file it is editing or searching">
             <img class="stage-img" src="assets/shots/agents-en.webp" width="1138" height="502" alt="" aria-hidden="true">
@@ -269,7 +287,7 @@
       <div class="also">
         <h3 data-i18n="also.t">Also on the island</h3>
         <ul>
-          <li data-i18n="also.1">Clock, date and weather with a 3-day forecast</li>
+          <li data-i18n="also.1">Clock, date and weather with a 3‑day forecast</li>
           <li data-i18n="also.2">Volume bar and mouse-wheel volume</li>
           <li data-i18n="also.3">Three themes: Vivid, Formal and Calm</li>
           <li data-i18n="also.4">Two sizes: Classic and Large</li>
@@ -285,13 +303,13 @@
       <header class="sec-head">
         <p class="kicker" data-i18n="video.kicker">Video</p>
         <h2 id="video-title" data-i18n="video.title">See it in motion</h2>
-        <p class="sec-lede" data-i18n="video.lede">A two-minute tour of what the island shows and how it changed since v0.1. Recorded with the 3 November design update, before Codex and the Limits tab arrived. Subtitles in English.</p>
+        <p class="sec-lede" data-i18n="video.lede">A tour of Vortex 0.5 in just over a minute: agents and Codex, usage limits, music, the file drawer and themes. Captions in English.</p>
       </header>
       <div class="video-frame">
-        <video controls muted playsinline preload="none" poster="assets/video/poster.jpg" width="1920" height="1080"
-               data-i18n-aria="video.aria" aria-label="Vortex promo video: what the island shows and how it changed since v0.1">
-          <source src="assets/video/vortex-demo.mp4" type="video/mp4">
-          <a href="assets/video/vortex-demo.mp4" data-i18n="video.fallback">Download the video (MP4)</a>
+        <video id="promo" controls playsinline preload="none" poster="assets/video/poster-en.jpg" width="1920" height="1080"
+               data-i18n-aria="video.aria" aria-label="Vortex promo video: a short tour of Vortex 0.5">
+          <source src="assets/video/vortex-demo-en.mp4" type="video/mp4">
+          <a href="assets/video/vortex-demo-en.mp4" data-i18n="video.fallback">Download the video (MP4)</a>
         </video>
       </div>
     </div>
@@ -327,7 +345,7 @@
         <li class="step">
           <span class="step-n" aria-hidden="true">3</span>
           <h3 data-i18n="how.3.t">Connect your agents</h3>
-          <p data-i18n-html="how.3.p">Open Settings and click <strong>Connect Claude Code</strong>; Vortex backs up your settings first. For Codex, click <strong>Connect Codex</strong> and approve the hooks once with <code>/hooks</code>. To see your Claude limits, turn on <strong>Claude limits</strong> in Settings.</p>
+          <p data-i18n-html="how.3.p">Open Settings and click <strong>Connect</strong> next to Claude Code (or <strong>Connect Claude Code</strong> on the empty screen); Vortex backs up your settings first. For Codex, click <strong>Connect Codex</strong> and approve the hooks once with <code>/hooks</code>. To see your Claude limits, turn on <strong>Claude limits</strong> in Settings.</p>
         </li>
       </ol>
       <p class="how-note">
@@ -342,7 +360,7 @@
     <div class="wrap">
       <header class="sec-head">
         <p class="kicker" data-i18n="priv.kicker">Privacy</p>
-        <h2 id="privacy-title" data-i18n="priv.title">Your code never leaves your PC.</h2>
+        <h2 id="privacy-title" data-i18n="priv.title">Vortex never sends your code anywhere.</h2>
       </header>
       <div class="priv-grid">
         <ul class="priv-points">
@@ -364,7 +382,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
             <div>
               <h3 data-i18n="priv.3.t">Only a few named internet calls</h3>
-              <p data-i18n="priv.3.p">Weather from Open-Meteo, with an approximate location from your IP unless you pick a city. Spotify and music cover art only if you connect them.</p>
+              <p data-i18n="priv.3.p">Weather from Open-Meteo. Unless you pick a city, your approximate location is looked up once per start from your IP via ipwho.is. Spotify and music cover art only if you connect them.</p>
             </div>
           </li>
         </ul>
@@ -372,7 +390,7 @@
         <div class="spec">
           <h3 class="spec-t" data-i18n="spec.t">At a glance</h3>
           <dl>
-            <div><dt data-i18n="spec.k1">Platform</dt><dd data-i18n="spec.v1">Windows 10 &amp; 11 · x64</dd></div>
+            <div><dt data-i18n="spec.k1">Platform</dt><dd data-i18n="spec.v1">Windows 10 &amp; 11 · x64 (tested on Windows 11)</dd></div>
             <div><dt data-i18n="spec.k2">Version</dt><dd data-i18n="spec.v2">0.5.0 · 7 Nov 2026</dd></div>
             <div><dt data-i18n="spec.k3">Installer</dt><dd data-i18n="spec.v3">About 116 MB · for your user, no admin rights</dd></div>
             <div><dt data-i18n="spec.k4">Agents</dt><dd data-i18n="spec.v4">Claude Code · Codex (CLI and app)</dd></div>
@@ -405,8 +423,8 @@
           </div>
           <ul>
             <li data-i18n="log.5.1">Renewal time on every limit window, absolute and relative.</li>
-            <li data-i18n="log.5.2">Reminders 2 days and 1 day before the weekly limit renews (plus an optional 5-hour one).</li>
-            <li data-i18n="log.5.3">Usage history, a pace estimate and a 7-day chart.</li>
+            <li data-i18n="log.5.2">Reminders 2 days and 1 day before the weekly limit renews (plus an optional 5‑hour one).</li>
+            <li data-i18n="log.5.3">Usage history, a pace estimate and a 7‑day chart.</li>
             <li data-i18n="log.5.4">A small celebration when a limit renews; optional renewal countdown on the closed island.</li>
             <li data-i18n="log.5.5">Usage summary every time Vortex starts.</li>
             <li data-i18n="log.5.6">New default “Vivid” theme with four accent colours.</li>
@@ -420,8 +438,8 @@
               <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <ul>
-              <li data-i18n="log.4.1">Codex joins Claude Code: live Codex sessions and Codex approvals on the island.</li>
-              <li data-i18n="log.4.2">Usage limits: a Limits tab with 5-hour, weekly and other windows; alerts at 60 / 80 / 90%.</li>
+              <li data-i18n="log.4.1">Codex alongside Claude Code: live Codex sessions and Codex approvals on the island.</li>
+              <li data-i18n="log.4.2">Usage limits: a Limits tab with 5‑hour, weekly and other windows; alerts at 60 / 80 / 90%.</li>
               <li data-i18n="log.4.3">Lumo sleeps at 90% (adjustable) and shows when the limit is back.</li>
               <li data-i18n="log.4.4">Y / N keys to allow or deny; session cards with context %, duration, estimated cost and the last message.</li>
               <li data-i18n="log.4.5">Focus mode and a daily “Today” summary.</li>
@@ -432,7 +450,7 @@
         <li>
           <details class="log-item">
             <summary class="log-head">
-              <span class="ver ver-word" data-i18n="log.d.v">Design update</span>
+              <span class="ver ver-word"><span data-i18n="log.d.v">Design update</span> <span class="ver-sub" data-i18n="log.d.sub">still v0.2</span></span>
               <time datetime="2026-11-03" data-i18n="log.d.d">3 Nov 2026</time>
               <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
@@ -455,7 +473,7 @@
             <ul>
               <li data-i18n="log.2.1">Music: controls for any Windows media player, plus search and play with YouTube Music and Spotify.</li>
               <li data-i18n="log.2.2">Volume: a level bar on every change, mouse-wheel volume on the island.</li>
-              <li data-i18n="log.2.3">Clock and weather with a 3-day forecast.</li>
+              <li data-i18n="log.2.3">Clock and weather with a 3‑day forecast.</li>
               <li data-i18n="log.2.4">Your PC notifications on the island, with per-app mute and content hiding.</li>
               <li data-i18n="log.2.5">New Home, Music and Notifications tabs.</li>
             </ul>
@@ -500,7 +518,7 @@
         </details>
         <details>
           <summary><span data-i18n="faq.3.q">Does Vortex send my code anywhere?</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p data-i18n="faq.3.a">No. Claude Code and Codex talk to Vortex only on your own PC (localhost, protected by a secret token). Vortex has no account, no analytics and no telemetry. Its only internet calls are weather (Open-Meteo, plus an approximate IP location unless you pick a city) and, if you connect them, Spotify and music cover art.</p>
+          <p data-i18n="faq.3.a">No. Claude Code and Codex talk to Vortex only on your own PC (localhost, protected by a secret token). Vortex has no account, no analytics and no telemetry. Its only internet calls are weather from Open-Meteo, an approximate location from your IP via ipwho.is (once per start, only if you haven't picked a city) and, if you connect them, Spotify and music cover art.</p>
         </details>
         <details>
           <summary><span data-i18n="faq.4.q">Why does Windows show a SmartScreen warning?</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -512,15 +530,15 @@
         </details>
         <details>
           <summary><span data-i18n="faq.6.q">Is there a Mac version?</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p data-i18n="faq.6.a">No. Vortex is made for Windows 10 and 11.</p>
+          <p data-i18n="faq.6.a">No. Vortex is made for Windows 10 and 11 (tested on Windows 11).</p>
         </details>
         <details>
           <summary><span data-i18n="faq.7.q">Does it work without Claude Code?</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p data-i18n="faq.7.a">Yes. Music, notifications, volume, clock, weather and the file drawer work on their own. The agent and limit features need Claude Code or Codex.</p>
+          <p data-i18n="faq.7.a">Yes. Music, notifications, volume, clock, weather and the file drawer work on their own. The agent and limit features need Claude Code or Codex. Claude limits need a Pro or Max plan; Codex limits need a ChatGPT sign-in.</p>
         </details>
         <details>
           <summary><span data-i18n="faq.8.q">How do I connect it?</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p data-i18n-html="faq.8.a">Open Settings and click <strong>Connect Claude Code</strong>; Vortex backs up your settings and adds its hooks. For Codex, click <strong>Connect Codex</strong>, then approve the hooks once with <code>/hooks</code> in Codex. For your Claude limits, turn on <strong>Claude limits</strong> in Settings; your status line keeps working the same.</p>
+          <p data-i18n-html="faq.8.a">Open Settings and click <strong>Connect</strong> next to Claude Code (or <strong>Connect Claude Code</strong> on the empty screen); Vortex backs up your settings and adds its hooks. For Codex, click <strong>Connect Codex</strong>, then approve the hooks once with <code>/hooks</code> in Codex. For your Claude limits, turn on <strong>Claude limits</strong> in Settings; your status line keeps working the same. If you have no status line yet, Vortex asks before adding one.</p>
         </details>
         <details>
           <summary><span data-i18n="faq.9.q">How do I uninstall it?</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -528,7 +546,7 @@
         </details>
         <details>
           <summary><span data-i18n="faq.10.q">Will it slow down Claude Code?</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p data-i18n="faq.10.a">No. Hook calls are tiny local requests; if Vortex is closed, Claude Code just carries on.</p>
+          <p data-i18n="faq.10.a">Not for normal work. Hook calls are tiny local requests, and if Vortex is closed Claude Code just carries on. One thing to know: while Vortex shows a permission request, Claude Code's own terminal prompt waits until you answer on the island or 120 s pass (50 s for Codex).</p>
         </details>
       </div>
     </div>
